@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jemaat GKPI Pekanbaru Kota</title>
+    <link rel="icon" type="image/png" href="images/logo%20gkpi%20transparent.png?v=2" />
+    <link rel="stylesheet" href="styles.css?v=18" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-brand">
+        <p class="eyebrow">Aplikasi Database Jemaat</p>
+        <h1>JEMAAT GKPI PEKANBARU KOTA</h1>
+        <p class="subtitle">RESORT PEKANBARU KOTA - WILAYAH IX RIAU</p>
+        <p class="header-address">Jl. Palapa No. 04 Pekanbaru - Riau 28282</p>
+      </div>
+      <img
+        class="header-logo"
+        src="images/logo%20gkpi%20transparent.png"
+        alt="Logo GKPI Pekanbaru Kota"
+      />
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar">
+        <nav class="side-nav" aria-label="Menu database jemaat">
+          <div class="side-nav-heading">
+            <span class="side-nav-mark" aria-hidden="true">✦</span>
+            <div>
+              <p class="side-nav-kicker">Menu Utama</p>
+              <h2>Kelola Jemaat</h2>
+            </div>
+          </div>
+          <button class="tab side-nav-item active" data-tab="dashboard" type="button">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm10 7h6v-9h-6v9ZM4 20h6v-3H4v3Zm10-13h6V4h-6v3Z"/></svg></span>
+            <span>Dashboard</span>
+          </button>
+          <button class="tab side-nav-item" data-tab="new-member" type="button">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 20v-1.8a4.2 4.2 0 0 0-4.2-4.2H6.2A4.2 4.2 0 0 0 2 18.2V20M8.5 10a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm10-6v6m3-3h-6"/></svg></span>
+            <span>Anggota Jemaat Baru</span>
+          </button>
+          <button class="tab side-nav-item" data-tab="add-family" type="button">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8-7v6m3-3h-6"/></svg></span>
+            <span>Tambah Anggota Keluarga</span>
+          </button>
+          <button class="tab side-nav-item" data-tab="leaving" type="button">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></span>
+            <span>Pindah / Meninggal</span>
+          </button>
+          <button class="tab side-nav-item" data-tab="congregation" type="button">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M8 10h.01M12 10h.01M16 10h.01"/></svg></span>
+            <span>Database Jemaat</span>
+          </button>
+        </nav>
+      </aside>
+
+      <section class="workspace">
+        <section id="dashboard" class="tab-panel active">
+          <section class="panel dashboard-panel">
+            <div class="dashboard-header">
+              <div>
+                <p class="eyebrow">Dashboard</p>
+                <h2>Ringkasan Data Jemaat</h2>
+              </div>
+              <label class="dashboard-year" for="dashboard-year">Tahun statistik
+                <select id="dashboard-year" aria-label="Pilih tahun statistik"></select>
+              </label>
+            </div>
+            <div class="dashboard-grid">
+              <section class="dashboard-card">
+                <div class="dashboard-card-heading">
+                  <h3>Komposisi Jemaat</h3>
+                  <span class="dashboard-note">Data saat ini</span>
+                </div>
+                <div class="chart-layout">
+                  <div id="member-chart" class="pie-chart" role="img" aria-label="Grafik komposisi jemaat"></div>
+                  <div id="member-chart-legend" class="chart-legend"></div>
+                </div>
+              </section>
+              <section class="dashboard-card">
+                <div class="dashboard-card-heading">
+                  <h3>Perubahan Jemaat</h3>
+                  <span class="dashboard-note" id="dashboard-year-label"></span>
+                </div>
+                <div class="chart-layout">
+                  <div id="year-chart" class="pie-chart" role="img" aria-label="Grafik perubahan jemaat per tahun"></div>
+                  <div id="year-chart-legend" class="chart-legend"></div>
+                </div>
+              </section>
+            </div>
+          </section>
+        </section>
+
+        <section id="new-member" class="tab-panel">
+          <div class="split">
+            <form id="new-member-form" class="panel form-panel">
+              <h2>Form Anggota Jemaat Baru</h2>
+              <div class="form-grid">
+                <label>Nomor jemaat<input name="number" required data-number-input /></label>
+                <label>Nama<input name="name" required /></label>
+                <label>Status<select name="status" required><option>Kepala Keluarga</option><option>Istri</option><option>Anak</option><option>Family Lain</option></select></label>
+                <label>Jenis kelamin<select name="gender"><option>Perempuan</option><option>Laki-laki</option></select></label>
+                <label>Alamat<input name="address" required /></label>
+                <label>Sektor<select name="sector" required data-sector-select></select></label>
+                <label>Tanggal lahir<input name="birthDate" type="date" /></label>
+                <label>Tanggal baptis<input name="baptismDate" type="date" /></label>
+                <label>Tanggal sidi<input name="confirmationDate" type="date" /></label>
+                <label>Tanggal nikah<input name="marriageDate" type="date" /></label>
+              </div>
+              <button type="submit">Simpan ke Database Jemaat</button>
+            </form>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Riwayat Anggota Baru</h2>
+                <div class="history-date-filter new-member-date-filter" aria-label="Filter rentang tanggal masuk anggota baru">
+                  <label for="new-member-date-from">Dari<input id="new-member-date-from" type="date" /></label>
+                  <span>-</span>
+                  <label for="new-member-date-to">Sampai<input id="new-member-date-to" type="date" /></label>
+                </div>
+                <button id="process-new-members" class="secondary" type="button">Bersihkan 30 Hari</button>
+              </div>
+              <p class="muted">Data langsung masuk ke Database Jemaat. Riwayat anggota baru hanya disimpan selama 30 hari.</p>
+              <div class="table-wrap new-member-history-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>No. Jemaat</th><th>Nama</th><th>Status</th><th>Jenis kelamin</th><th>Sektor</th><th>Lahir</th><th>Masuk</th><th>Pindah</th>
+                    </tr>
+                  </thead>
+                  <tbody id="new-member-table"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section id="congregation" class="tab-panel">
+          <section class="panel">
+            <div class="print-title">
+              <img
+                class="print-logo"
+                src="images/logo%20gkpi%20transparent.png"
+                alt="Logo GKPI Pekanbaru Kota"
+              />
+              <div class="print-title-text">
+                <h1>DATA JEMAAT GKPI PEKANBARU KOTA</h1>
+                <p>Resort Pekanbaru Kota - Wilayah IX Riau</p>
+              </div>
+            </div>
+            <div class="panel-heading">
+              <h2>Database Jemaat</h2>
+              <div class="panel-actions">
+                <span class="badge" id="active-sector-label">Semua sektor</span>
+                <button id="print-sector" class="secondary" type="button">Print</button>
+                <button id="download-sector" type="button">Unduh Excel</button>
+              </div>
+            </div>
+            <div class="filter-row">
+              <label for="sector-filter">Filter berdasarkan sektor</label>
+              <select id="sector-filter"></select>
+              <p class="muted" id="sector-summary">Belum ada data.</p>
+            </div>
+            <div class="table-wrap">
+              <table id="printable-table">
+                <thead>
+                  <tr>
+                    <th class="print-only">No.</th><th>No. Jemaat</th><th>Nama</th><th>Status</th><th class="gender-col">Jenis kelamin</th><th>Alamat</th><th>Sektor</th><th>Lahir</th><th>Baptis</th><th>Sidi</th><th>Nikah</th><th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="member-table"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="add-family" class="tab-panel">
+          <form id="family-member-form" class="panel form-panel">
+            <h2>Tambah Anggota Keluarga pada Data Terdaftar</h2>
+            <label for="existing-family">Keluarga yang sudah terdaftar</label>
+            <select id="existing-family" name="familyId" required></select>
+            <div class="form-grid">
+              <label>Nomor jemaat<input name="number" required data-number-input /></label>
+              <label>Nama<input name="name" required /></label>
+              <label>Status<select name="status" required><option>Kepala Keluarga</option><option>Istri</option><option>Anak</option><option>Family Lain</option></select></label>
+              <label>Jenis kelamin<select name="gender"><option>Perempuan</option><option>Laki-laki</option></select></label>
+              <label>Alamat<input name="address" required /></label>
+              <label>Sektor<select name="sector" required data-sector-select></select></label>
+              <label>Tanggal lahir<input name="birthDate" type="date" /></label>
+              <label>Tanggal baptis<input name="baptismDate" type="date" /></label>
+              <label>Tanggal sidi<input name="confirmationDate" type="date" /></label>
+              <label>Tanggal nikah<input name="marriageDate" type="date" /></label>
+            </div>
+            <button type="submit">Tambahkan ke Database Jemaat</button>
+          </form>
+        </section>
+
+        <section id="leaving" class="tab-panel">
+          <div class="split">
+            <form id="leaving-form" class="panel form-panel">
+              <h2>Jemaat Pindah / Meninggal</h2>
+              <label for="leaving-member">Anggota jemaat</label>
+              <select id="leaving-member" name="memberId" required></select>
+              <button id="load-leaving-member" class="secondary" type="button">Muat Data Jemaat</button>
+              <div id="selected-member-card" class="selected-member muted">Pilih anggota jemaat, lalu muat data.</div>
+              <label>Jenis riwayat<select name="reason"><option>Pindah</option><option>Meninggal</option></select></label>
+              <label>Tanggal<input name="date" type="date" required /></label>
+              <label>Catatan<textarea name="notes" rows="4"></textarea></label>
+              <button type="submit">Pindahkan dari Database Jemaat</button>
+            </form>
+
+            <div class="history-stack">
+              <section class="panel">
+                <div class="history-heading">
+                  <h2>Riwayat Jemaat Pindah</h2>
+                  <div class="history-date-filter" aria-label="Filter rentang tanggal jemaat pindah">
+                    <label for="moved-date-from">Dari<input id="moved-date-from" type="date" /></label>
+                    <span>-</span>
+                    <label for="moved-date-to">Sampai<input id="moved-date-to" type="date" /></label>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>No. Jemaat</th><th>Nama</th><th>Sektor</th><th>Tanggal</th><th>Catatan</th>
+                      </tr>
+                    </thead>
+                    <tbody id="moved-table"></tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="panel">
+                <div class="history-heading">
+                  <h2>Riwayat Jemaat Meninggal</h2>
+                  <div class="history-date-filter" aria-label="Filter rentang tanggal jemaat meninggal">
+                    <label for="deceased-date-from">Dari<input id="deceased-date-from" type="date" /></label>
+                    <span>-</span>
+                    <label for="deceased-date-to">Sampai<input id="deceased-date-to" type="date" /></label>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>No. Jemaat</th><th>Nama</th><th>Sektor</th><th>Tanggal</th><th>Catatan</th>
+                      </tr>
+                    </thead>
+                    <tbody id="deceased-table"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="empty-row-template">
+      <tr><td colspan="10" class="empty">Belum ada data.</td></tr>
+    </template>
+
+    <dialog id="edit-dialog" class="edit-dialog">
+      <form id="edit-member-form" class="panel form-panel" method="dialog">
+        <div class="panel-heading">
+          <h2>Edit Data Jemaat</h2>
+          <button id="edit-cancel" class="secondary icon-action" type="button" aria-label="Tutup">x</button>
+        </div>
+        <input name="id" type="hidden" />
+        <div class="form-grid">
+          <label>Nomor jemaat<input name="number" required data-number-input /></label>
+          <label>Nama<input name="name" required /></label>
+          <label>Status<select name="status" required><option>Kepala Keluarga</option><option>Istri</option><option>Anak</option><option>Family Lain</option></select></label>
+          <label>Jenis kelamin<select name="gender"><option>Perempuan</option><option>Laki-laki</option></select></label>
+          <label>Alamat<input name="address" required /></label>
+          <label>Sektor<select name="sector" required data-sector-select></select></label>
+          <label>Tanggal lahir<input name="birthDate" type="date" /></label>
+          <label>Tanggal baptis<input name="baptismDate" type="date" /></label>
+          <label>Tanggal sidi<input name="confirmationDate" type="date" /></label>
+          <label>Tanggal nikah<input name="marriageDate" type="date" /></label>
+        </div>
+        <button type="submit">Simpan Perubahan</button>
+      </form>
+    </dialog>
+
+    <script src="app.js?v=24"></script>
+  </body>
+</html>
